@@ -3,8 +3,9 @@
 
 # 依赖
 * symfony/console组件
-* swoole扩展(非必须)
-* php 5.6+
+* swiftmailer组件
+* swoole扩展
+* php 7.0+
 
 # 目录
 * core 框架目录

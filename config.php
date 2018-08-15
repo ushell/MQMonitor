@@ -8,7 +8,7 @@ $config = [
 	'mail' => [
 		'default' => [
 			'username' => 'monitor',
-			'email' => 'admin@ushell.me',
+			'email' => 'admin@example.com',
 			'title' => '业务监控通知'
 		],
 	],
