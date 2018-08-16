@@ -18,11 +18,6 @@ class Job
             throw new Exception("Error callable object !");
         }
 
-        if (! function_exists('swoole_timer_tick'))
-        {
-            throw new Exception("swoole_timer_tick function not found, reinstall swoole php extension!");
-        }
-
         return swoole_timer_tick($mtime, $callback);
     }
 

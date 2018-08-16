@@ -44,7 +44,7 @@ class Core extends Application
      * 配置
      * @var [type]
      */
-    public $config = [];
+    public static $config = [];
 
     public function __construct($config)
     {
@@ -86,7 +86,7 @@ class Core extends Application
      */
     private function parseConfig($config = [])
     {
-        $this->config = $config;
+        self::$config = $config;
     }
 
     /**
