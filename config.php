@@ -23,6 +23,12 @@ $config = [
             'table' => 'io',
         ],
     ],
+    'supervisor' => [
+        [
+            'name' => '127.0.0.1',
+            'log'  => '/tmp/supervisord.log',
+        ],
+    ],
 ];
 
 
