@@ -2,8 +2,8 @@
 namespace Monitor\Common\Mail;
 
 use Swift_Mailer;
-use Swift_SendmailTransport;
 use Swift_Message;
+use Swift_SendmailTransport;
 use Monitor\Core\Core;
 
 class Mail
@@ -18,18 +18,28 @@ class Mail
 
     public function __construct()
     {
-        if (! $this->instance)
-        {
-            $this->instance = new Swift_Mailer(new Swift_SendmailTransport($this->transport));
-            $this->message = new Swift_Message();
-        }
-
         if (! isset(Core::$config['mail']))
         {
             throw new \Exception('mail configure not found !');
         }
 
         $this->config = Core::$config['mail'];
+
+        if (! $this->instance)
+        {
+            $transport = new Swift_SendmailTransport();
+            if ($this->config['is_smtp'])
+            {
+                $transport = new \Swift_SmtpTransport($this->config['smtp']['host'], $this->config['smtp']['port']);
+                $transport->setUsername($this->config['smtp']['username']);
+                $transport->setPassword($this->config['smtp']['password']);
+                $transport->setEncryption($this->config['smtp']['encryption']);
+            }
+
+            $this->instance = new Swift_Mailer($transport);
+            $this->message = new Swift_Message();
+        }
+
     }
 
     public function setSubject($subject)
